@@ -1,0 +1,130 @@
+<script type="text/javascript" src="javascripts/loginForm.js"></script>
+<script type="text/javascript" src="javascripts/section.js"></script>
+<script src="javascripts/validation.js"  type="text/javascript"></script>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>INF2005</title>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta content="inf2005, uqam, programmation, web" />
+        <link href="style.css" rel="stylesheet" type="text/css" />
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+        </script>
+
+    </head>
+    <body>
+        <script>
+            $(document).ready(function() {
+                if (window.XMLHttpRequest) {// pour navigateur IE7+, Firefox, Chrome, Safari
+                    xmlhttp = new XMLHttpRequest();
+                } else {// pour navigateur IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.open("GET", "javascripts/login.xml", false);
+                xmlhttp.send();
+                xmlDoc = xmlhttp.responseXML;
+                var x = xmlDoc.getElementsByTagName("etudiant");
+                var courriel = [];
+                for (i = 0; i < x.length; i++) {
+                    var temp = x[i].getElementsByTagName("courriel")[0].childNodes[0].nodeValue;
+                    courriel[i] = temp;
+                }
+                document.getElementById("name").value = courriel.join(",");
+            });
+        </script>
+        <div class="main">
+            <div class="header">
+                <div class="header_resize">
+                    <div class="logo">
+                        <h1><a href="index.html">inf<span>2005</span><small>Programmation Web</small></a></h1>
+                    </div>
+                    <div class="menu">
+                        <ul>
+                            <li><a href="index.html"><span>Acceuil</span></a></li>
+                            <li id="etudiant" style="display:none"><a href="etudiant.html"><span>Etudiant</span></a></li>
+                            <li id="enseignant" style="display:none"><a class="active" href="enseignant.html"><span>Enseignant</span></a></li>
+                            <li id="demonstrateur" style="display:none"><a href="demonstrateur.html"><span>Demonstateur</span></a></li>
+                            <li><a href="contact.html"><span> Contact</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="clr"></div>
+                </div>
+                <div class="headert_text_resize">
+                    <div class="headert_text_resize">
+                        <div class="textarea" id='connected'>
+
+                        </div>
+                        <img src="images/img_1.jpg" alt="" width="631" height="279" />
+                        <div class="clr"></div>
+                    </div>
+                </div>
+                <div class="body">
+                    <div class="body_resize">
+                        <div class="left" id="section">
+                            <div class="bg">
+                                <h3 id="titreAjoutSections" > Envoyer courriel à tous </h2>
+                                    <form action="javascript:success()" method="post" id="contactform">
+                                        <li>
+                                            <label for="name">Destinataire*</label>
+                                            <input id="name" name="name" class="text"  />
+                                        </li>
+                                        <li>
+                                            <label for="email">Objet*</label>
+                                            <input id="email" name="email" class="text" />
+                                        </li>
+
+                                        <li>
+                                            <label for="message">Texte*</label>
+                                            <textarea id="message" name="message" rows="6" cols="50"></textarea>
+                                        </li>
+                                        <li class="buttons">
+                                            <input type="submit" name="imageField" id="imageField"  value="Send message" class="send" />
+
+
+                                            <div class="clr"></div>
+                                        </li>
+
+                                        </div>
+                                        </div>
+                                        <div class="right">
+                                            <div class="blog">
+                                                <h2><span>Choix d'options</span></h2>
+                                                <ul>
+                                                    <script>
+                                                        var dbjson = localStorage.getItem('db');
+                                                        var dbJ = JSON.parse(dbjson);
+                                                        var sect = dbJ.section;
+                                                        if (sect == null) {
+                                                        } else {
+                                                            for (var i = 0; i < sect.length; i++) {
+                                                                dbtext = sect[i]
+                                                                var sectionhtml = "<li><a href='javascript:gotosection(" + i + ");' >" + dbtext.titre + "</a> </li>";
+                                                                document.write(sectionhtml);
+                                                            }
+                                                        }
+                                                    </script>
+                                                    <li> <a href="listeEtudiants.html" >Liste étudiants inscrits</a> </li>
+                                                    <li> <a href="envoiCourriel.html">Envoyer un courriel</a> </li>
+                                                    <li id="ajouterRole" style="display:none"> <a href="roles.html">Attribuer un role</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="blog">
+                                                <h2><span>Liens Externe</span></h2>
+                                                <ul class="sponsors">
+                                                    <li class="sponsors"><a href="http://www.uqam.ca/" target="_new">UQAM</a><br />
+                                                    </li>
+                                                    <li class="sponsors"><a href="http://www.info.uqam.ca/" target="_new">Département informatique</a><br />
+                                                    </li>
+                                                    <li class="sponsors"><a href="http://www.moodle.uqam.ca/" target="_new">Moodle</a><br />
+                                                    </li>
+                                                    <li class="sponsors"><a href="hhttp://www.resultats.uqam.ca/etudiant/" target="_new">Résultat</a><br />
+                                                    </li>
+                                                    <li class="sponsors"><a href="http://www.sitel.uqam.ca/etudiants/Pages/accueil.aspx" target="_new">Sitel</a><br />
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        </div>
+                                        </body>
+                                        </html>

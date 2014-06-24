@@ -1,0 +1,124 @@
+<script type="text/javascript">
+    if (sessionStorage.poste != "demonstrateur") {
+        window.location = "index.html";
+    }
+    ;
+</script>
+<script type="text/javascript" src="javascripts/section.js"></script>
+<script type="text/javascript" src="javascripts/loginForm.js"></script>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>INF2005</title>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta content="inf2005, uqam, programmation, web" />
+        <link href="style.css" rel="stylesheet" type="text/css" />
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+        </script>
+    </head>
+    <body>
+        <div class="main">
+            <div class="header">
+                <div class="header_resize">
+                    <div class="logo">
+                        <h1><a href="index.html">inf<span>2005</span><small>Programmation Web</small></a></h1>
+                    </div>
+                    <div class="menu">
+                        <ul>
+                            <li><a href="index.html"><span>Acceuil</span></a></li>
+                            <li id="etudiant" style="display:none"><a href="etudiant.html"><span>Etudiant</span></a></li>
+                            <li id="enseignant" style="display:none" ><a href="enseignant.html"><span>Enseignant</span></a></li>
+                            <li id="demonstrateur" style="display:none"><a class="active" href="demonstrateur.html"><span>Demonstateur</span></a></li>
+                            <li><a href="contact.html"><span> Contact</span></a></li>
+                        </ul>
+                    </div>
+                    <div class="clr"></div>
+                </div>
+                <div class="headert_text_resize">
+                    <div class="textarea" id='connected'>
+
+                    </div>
+                    <img src="images/img_1.jpg" alt="" width="631" height="279" />
+                    <div class="clr"></div>
+                </div>
+            </div>
+            <div class="body">
+                <div class="body_resize">
+                        <div class="left" id="section">
+                            <h3><span>Section </span>Enseignant</h3>
+                            <div class="bg">
+                                <h3 id="titreAjoutSections" > Ajout de sections : </h2>
+                                    <table>
+                                        <form id="login"  method="POST" action="" name ="formulaire"  onsubmit="return ajoutSection();">
+                                            <tr class="ligne">
+                                                <td class="form_label"><label for="typeSection">Type de section :</label></td>
+                                                <td class="form_champ"><select name="jour" id="type">
+                                                        <option value="ateliers">Ateliers</option>
+                                                        <option value="examens">Examens</option>
+                                                        <option value="notesDeCours">Notes de cours</option>
+                                                        <option value="travauxPratiques">Travaux Pratiques</option>
+                                                    </select></td>
+                                            </tr>
+                                            <tr class="ligne">
+                                                <td class="form_label"><label for="Titre">Titre:</label></td>
+                                                <td class="form_champ"><input id="titre" name="Titre" type="text" /></td>
+                                                <td class="form_infos"><span id="infos_nom"> </span></td>
+                                            </tr>
+                                            <tr class="ligne">
+                                                <td class="form_label"><label for="Description">Description:</label></td>
+                                                <td class="form_champ"><textarea rows="5" cols="50" id="description" name="description"> </textarea></td>
+                                            </tr>
+                                            <tr class="ligne">
+                                                <td class="form_label"><label for="ressouce">Ressource:</label></td>
+                                                <td class="form_champ"><input id="ressource" name="ressource" value="http://"></td>
+                                            </tr>
+                                    </table>
+                                    <tr>
+                                        <input type="submit" value="Ajouter la section" />
+                                    </tr>
+                                    </form>
+                            </div>
+                        </div>
+                    <div class="right">
+                        <div class="blog">
+                            <h2><span>Choix d'options</span></h2>
+                            <ul>
+                                <script>
+                                    var dbjson = localStorage.getItem('db');
+                                    var dbJ = JSON.parse(dbjson);
+                                    var sect = dbJ.section;
+                                    if (sect == null) {
+                                    } else {
+                                        for (var i = 0; i < sect.length; i++) {
+                                            dbtext = sect[i]
+                                            var sectionhtml = "<li><a href='javascript:gotosection(" + i + ");' >" + dbtext.titre + "</a> </li>";
+                                            document.write(sectionhtml);
+                                        }
+                                    }
+                                </script>
+                                <li> <a href="listeEtudiants.html" >Liste étudiants inscrits</a> </li>
+                                <li> <a href="envoiCourriel.html">Envoyer un courriel</a> </li>
+                                <li id="ajouterRole" style="display:none"> <a href="roles.html">Attribuer un role</a></li>
+                            </ul>
+                        </div>
+                        <div class="blog">
+                            <h2><span>Liens Externe</span></h2>
+                            <ul class="sponsors">
+                                <li class="sponsors"><a href="http://www.uqam.ca/" target="_new">UQAM</a><br />
+                                </li>
+                                <li class="sponsors"><a href="http://www.info.uqam.ca/" target="_new">Département informatique</a><br />
+                                </li>
+                                <li class="sponsors"><a href="http://www.moodle.uqam.ca/" target="_new">Moodle</a><br />
+                                </li>
+                                <li class="sponsors"><a href="hhttp://www.resultats.uqam.ca/etudiant/" target="_new">Résultat</a><br />
+                                </li>
+                                <li class="sponsors"><a href="http://www.sitel.uqam.ca/etudiants/Pages/accueil.aspx" target="_new">Sitel</a><br />
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </body>
+</html>

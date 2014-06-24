@@ -1,0 +1,36 @@
+<script type="text/javascript">
+    xmlDoc = loadXMLDoc("login.xml");
+    newNode = xmlDoc.createElement("test");
+    x = xmlDoc.getElementsByTagName("list")[0];
+    x.appendChild(newNode);
+    document.write(x.)
+    document.write(x.getElementsByTagName("test")[0].nodeName);
+
+
+    function loadXMLDoc(dname) {
+        if (window.XMLHttpRequest)
+        {
+            xhttp = new XMLHttpRequest();
+        }
+        else
+        {
+            xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xhttp.open("GET", dname, false);
+        xhttp.send();
+        if (xhttp.readyState == 4) {
+            var retour = xhttp.responseXML;
+        }
+        return retour;
+    }
+</script>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+    </head>
+    <body>
+        <div>TODO write content</div>
+    </body>
+</html>
